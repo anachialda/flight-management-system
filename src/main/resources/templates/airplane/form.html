@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Airplane Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #020617, #1e293b); min-height: 100vh; color: #e5e7eb; }
+        .page-wrapper { padding-top: 4rem; padding-bottom: 4rem; }
+        .card-main { background-color: #020617; border-radius: 18px; border: 1px solid rgba(148, 163, 184, 0.3); }
+        .form-control { background-color: #020617; border: 1px solid rgba(148, 163, 184, 0.6); color: #e5e7eb; }
+        .invalid-feedback { color: #ef4444; }
+        .btn-primary { border-radius: 999px; }
+        .form-label {
+            color: #cbd5e1; /* Alb-gri deschis */
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container page-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card card-main p-4">
+                <h3 class="mb-4 text-light" th:text="${airplane.id == null || airplane.id == ''} ? 'New Airplane' : 'Edit Airplane'"></h3>
+                <form th:object="${airplane}" th:action="${airplane.id == null || airplane.id == ''} ? @{/airplanes} : @{/airplanes/{id}(id=${airplane.id})}" method="post">
+
+                    <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
+                        <p class="mb-0" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Airplane ID (Tail Code)</label>
+                        <input type="text" class="form-control" th:field="*{id}" th:readonly="${airplane.id != null && airplane.id != ''}"
+                               th:classappend="${#fields.hasErrors('id')} ? 'is-invalid' : ''" placeholder="e.g. AP-101"/>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Airplane Number</label>
+                        <input type="number" class="form-control" th:field="*{airplaneNumber}" th:classappend="${#fields.hasErrors('airplaneNumber')} ? 'is-invalid' : ''"/>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('airplaneNumber')}" th:errors="*{airplaneNumber}"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/airplanes" class="btn btn-outline-light">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Airplane</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
