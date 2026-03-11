@@ -1,5 +1,10 @@
 # Flight Management System (FMS)
 
+<img width="1438" height="769" alt="Screenshot 2026-03-11 at 10 57 55" src="https://github.com/user-attachments/assets/30630a80-ba7c-4806-97bb-7122d3711005" />
+<img width="1219" height="769" alt="Screenshot 2026-03-11 at 10 58 22" src="https://github.com/user-attachments/assets/6dc82c33-a509-41e3-b12a-e8ab56fcfc6d" />
+<img width="886" height="573" alt="Screenshot 2026-03-11 at 10 59 32" src="https://github.com/user-attachments/assets/cd2314ea-09a6-4221-8704-347395f4d800" />
+
+
 ## Overview
 
 This project is a full-stack web application developed as part of the **Advanced Programming Methods (Metode Avansate de Programare – MAP)** course at **Babeș-Bolyai University (UBB)**.
