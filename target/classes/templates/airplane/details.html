@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Airplane Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #020617, #0f172a); min-height: 100vh; color: #e5e7eb; }
+        .page-wrapper { padding-top: 4rem; padding-bottom: 4rem; }
+        .card-main { background-color: #020617; border-radius: 18px; border: 1px solid rgba(148, 163, 184, 0.35); }
+    </style>
+</head>
+<body>
+<div class="container page-wrapper" th:object="${airplane}">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card card-main p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h3 class="mb-0 text-light" th:text="'Airplane #' + *{airplaneNumber}"></h3>
+                        <span class="badge bg-secondary" th:text="'Tail Code: ' + *{id}"></span>
+                    </div>
+                </div>
+
+                <h5 class="text-info mb-3">Flight History</h5>
+
+                <div th:if="*{flights != null and !flights.isEmpty()}">
+                    <ul class="list-group list-group-flush border border-secondary rounded">
+                        <li class="list-group-item bg-dark bg-opacity-25 text-light border-secondary d-flex justify-content-between align-items-center"
+                            th:each="f : *{flights}">
+                            <div>
+                                <div class="fw-bold" th:text="${f.flightName}"></div>
+                                <div class="small text-muted" th:text="${#temporals.format(f.departureTime, 'yyyy-MM-dd HH:mm')}"></div>
+                            </div>
+                            <a th:href="@{'/flights/' + ${f.id} + '/details'}" class="btn btn-sm btn-outline-light">View</a>
+                        </li>
+                    </ul>
+                </div>
+                <div th:if="*{flights == null or flights.isEmpty()}" class="text-muted fst-italic">
+                    No flights assigned to this aircraft yet.
+                </div>
+
+                <hr class="border-secondary mt-4">
+                <div class="d-flex justify-content-between">
+                    <a href="/airplanes" class="btn btn-outline-light">Back</a>
+                    <a th:href="@{'/airplanes/' + *{id} + '/edit'}" class="btn btn-outline-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
