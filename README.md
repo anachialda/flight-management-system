@@ -214,7 +214,8 @@ Start the Application
 
 Build and run the project:
 
-```mvn clean install
+```
+mvn clean install
 mvn spring-boot:run
 ```
 
