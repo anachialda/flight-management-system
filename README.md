@@ -207,19 +207,19 @@ spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
 
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.show-sql=truen```
 
 
 Start the Application
 
 Build and run the project:
 
-mvn clean install
-mvn spring-boot:run
+```mvn clean install
+mvn spring-boot:run```
 
 Then open the application in your browser:
 
-http://localhost:8080
+```http://localhost:8080```
 
 
 
